@@ -9,7 +9,7 @@ import {
  } from 'react-native';
  import filter from 'lodash.filter';
 
- const API_ENDPOINT = `https://api.openbrewerydb.org/breweries`;
+ const API_ENDPOINT = `https://raw.githubusercontent.com/openbrewerydb/openbrewerydb/master/breweries.json`;
 
 export default function App() {
   // set state
