@@ -5,16 +5,21 @@ import {
   View, 
   FlatList,
   ActivityIndicator,
-  Image
+  TextInput,
  } from 'react-native';
+ import filter from 'lodash.filter';
 
- const API_ENDPOINT = `https://api.openbrewerydb.org/breweries?by_city=san_diego`;
+ const API_ENDPOINT = `https://api.openbrewerydb.org/breweries`;
 
 export default function App() {
+  // set state
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
+  const [query, setQuery] = useState('');
+  const [fullData, setFullData] = useState([]);
 
+// fetch data from API
   useEffect(() => {
     setIsLoading(true);
 
@@ -22,6 +27,7 @@ export default function App() {
       .then(response => response.json())
       .then(results => {
         setData(results);
+        setFullData(results);
         setIsLoading(false);
       })
       .catch(err => {
@@ -48,16 +54,53 @@ export default function App() {
     );
   }
 
+  // Helper Functions
+  function renderHeader() {
+    return (
+      <View
+        style={{
+          backgroundColor: '#fff',
+          padding: 10,
+          marginVertical: 10,
+          borderRadius: 20
+        }}
+      >
+        <TextInput
+          autoCapitalize="none"
+          autoFocus={true}
+          autoCorrect={false}
+          clearButtonMode="always"
+          value={query}
+          onChangeText={queryText => handleSearch(queryText)}
+          placeholder="City Name"
+          style={{ backgroundColor: '#fff', paddingHorizontal: 20 }}
+        />
+      </View>
+    );
+  }
+
+  const handleSearch = text => {
+    const formattedQuery = text.toLowerCase();
+    const filteredData = fullData.filter(brewery => brewery.city.toLowerCase().startsWith(formattedQuery)
+    )
+    console.log(filteredData);
+    setData(filteredData);
+    setQuery(text);
+  };
+  
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Breweries</Text>
       <FlatList
+        ListHeaderComponent={renderHeader}
         data={data}
         keyExtractor={item => item.first}
         renderItem={({ item }) => (
           <View style={styles.listItem}>
             <View style={styles.metaInfo}>
               <Text style={styles.title}>{item.name}</Text>
+              <Text style={styles.title}>{item.city}</Text>
             </View>
           </View>
         )}
