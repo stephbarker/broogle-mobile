@@ -1,4 +1,4 @@
-import { SafeAreaView, View, Text, FlatList, StyleSheet, Linking, TouchableHighlight } from 'react-native';
+import { SafeAreaView, View, Text, FlatList, StyleSheet, Linking, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { Link } from 'react-router-native';
 
@@ -11,20 +11,21 @@ function ResultScreen (props) {
         data={props.data}
         keyExtractor={item => item.first}
         renderItem={({ item }) => (
-            <TouchableHighlight onPress={() => Linking.openURL(item.website_url)}>
+            <TouchableOpacity activeOpacity={1} backgroundColor="FFF" onPress={() => Linking.openURL(item.website_url)}>
           <View style={styles.listItem}>
             <View style={styles.listItemText}>
               <Text style={styles.listItemTitle}>{item.name}</Text>
               <Text style={styles.listItemText}>{item.city}, {item.state}</Text>
             </View>
           </View>
-          </TouchableHighlight>
+          </TouchableOpacity>
         )}
       />
       <View style={styles.footer}>
-      <Link to="/">
-          <Text style={styles.back}>Back</Text>
+      <Link to="/" underlayColor="transparent">
+          <Text style={styles.back}>Back</Text> 
       </Link>
+      
       </View>
       </SafeAreaView>
     )

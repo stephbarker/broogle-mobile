@@ -24,7 +24,7 @@ function HomeScreen (props) {
         style={styles.input}
       />
       <View style={styles.link}>
-      <Link to="/results">
+      <Link to="/results" underlayColor="transparent">
           <Text style={styles.cheers}>Cheers!</Text>
       </Link>
       </View>
