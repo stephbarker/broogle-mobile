@@ -7,7 +7,11 @@ import {
   ActivityIndicator,
   TextInput,
  } from 'react-native';
- import filter from 'lodash.filter';
+import { NativeRouter, Switch, Route } from 'react-router-native';
+
+
+import HomeScreen from './screens/HomeScreen';
+import ResultScreen from './screens/ResultScreen';
 
  const API_ENDPOINT = `https://raw.githubusercontent.com/openbrewerydb/openbrewerydb/master/breweries.json`;
 
@@ -55,29 +59,29 @@ export default function App() {
   }
 
   // Helper Functions
-  function renderHeader() {
-    return (
-      <View
-        style={{
-          backgroundColor: '#fff',
-          padding: 10,
-          marginVertical: 10,
-          borderRadius: 20
-        }}
-      >
-        <TextInput
-          autoCapitalize="none"
-          autoFocus={true}
-          autoCorrect={false}
-          clearButtonMode="always"
-          value={query}
-          onChangeText={queryText => handleSearch(queryText)}
-          placeholder="City Name"
-          style={{ backgroundColor: '#fff', paddingHorizontal: 20 }}
-        />
-      </View>
-    );
-  }
+  // function renderHeader() {
+  //   return (
+  //     <View
+  //       style={{
+  //         backgroundColor: '#fff',
+  //         padding: 10,
+  //         marginVertical: 10,
+  //         borderRadius: 20
+  //       }}
+  //     >
+  //       <TextInput
+  //         autoCapitalize="none"
+  //         autoFocus={true}
+  //         autoCorrect={false}
+  //         clearButtonMode="always"
+  //         value={query}
+  //         onChangeText={queryText => handleSearch(queryText)}
+  //         placeholder="City Name"
+  //         style={{ backgroundColor: '#fff', paddingHorizontal: 20 }}
+  //       />
+  //     </View>
+  //   );
+  // }
 
   const handleSearch = text => {
     const formattedQuery = text.toLowerCase();
@@ -90,45 +94,26 @@ export default function App() {
   
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Breweries</Text>
-      <FlatList
-        ListHeaderComponent={renderHeader}
-        data={data}
-        keyExtractor={item => item.first}
-        renderItem={({ item }) => (
-          <View style={styles.listItem}>
-            <View style={styles.metaInfo}>
-              <Text style={styles.title}>{item.name}</Text>
-              <Text style={styles.title}>{item.city}</Text>
-            </View>
-          </View>
-        )}
-      />
+    <NativeRouter>
+    <View  style={styles.home}>
+      <Switch>
+        <Route exact path ="/" render={(props) =>
+          <HomeScreen query={query} handleSearch={handleSearch} /> 
+        }/>
+        <Route exact path="/results" render={(props) =>
+          <ResultScreen data={data} />
+        }/>
+      {/* <FlatList ListHeaderComponent={renderHeader} /> */}
+      </Switch>
     </View>
+    </NativeRouter>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  home: {
     flex: 1,
-    backgroundColor: '#f8f8f8',
-    alignItems: 'center'
-  },
-  text: {
-    fontSize: 20,
-    color: '#101010',
-    marginTop: 60,
-    fontWeight: '700'
-  },
-  listItem: {
-    marginTop: 10,
-    padding: 20,
+    backgroundColor: 'white',
     alignItems: 'center',
-    backgroundColor: '#fff',
-    width: '100%'
   },
-  listItemText: {
-    fontSize: 18
-  }
 });
