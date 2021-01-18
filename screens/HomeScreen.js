@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TextInput, SafeAreaView, Text, StyleSheet, Image, LogBox } from 'react-native';
+import { View, TextInput, SafeAreaView, Text, StyleSheet, Image} from 'react-native';
 import { Link } from 'react-router-native'
 
 function HomeScreen (props) {
@@ -7,10 +7,12 @@ function HomeScreen (props) {
         <SafeAreaView 
         style={styles.container}
     >
+        
         <View style={styles.logoContainer}>
         <Image style={styles.logo} source={require('../assets/logo.png')} />
         <Text style={styles.tagline}>The Search for Local Breweries</Text>
         </View>
+        <View style={styles.search}>
       <TextInput
         autoCapitalize="none"
         autoFocus={true}
@@ -23,13 +25,12 @@ function HomeScreen (props) {
       />
       <View style={styles.link}>
       <Link to="/results">
-          <Text>Cheers!</Text>
+          <Text style={styles.cheers}>Cheers!</Text>
       </Link>
       </View>
-      
+      </View>
     </SafeAreaView>
     )
-
 }
 
 const styles = StyleSheet.create({
@@ -39,25 +40,38 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: 'white',
         padding: 10,
-        marginVertical: 100,
-        borderRadius: 20
       },
     link: {
         justifyContent: 'center',
+        margin: 25,
+        backgroundColor: 'gainsboro',
+        padding: 5
+    },
+    cheers: {
+        fontSize: 15,
+        color: 'black'
+
     },
     input: {
         backgroundColor: 'azure', 
-        paddingHorizontal: 20
+        paddingHorizontal: 20,
+        width: 320,
+        height: 25,
+        borderRadius: 20
 
     },
     logoContainer: {
-        marginVertical: 125,
+        marginVertical: 175,
         justifyContent: 'center',
         alignItems: 'center'
     },
     logo: {
         height: 125,
         width: 340,
+    },
+    search: {
+        marginVertical: -120,
+        alignItems: 'center',
     }
 
 })
