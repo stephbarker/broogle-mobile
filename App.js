@@ -3,9 +3,7 @@ import {
   StyleSheet, 
   Text, 
   View, 
-  FlatList,
   ActivityIndicator,
-  TextInput,
  } from 'react-native';
 import { NativeRouter, Switch, Route } from 'react-router-native';
 
@@ -59,29 +57,6 @@ export default function App() {
   }
 
   // Helper Functions
-  // function renderHeader() {
-  //   return (
-  //     <View
-  //       style={{
-  //         backgroundColor: '#fff',
-  //         padding: 10,
-  //         marginVertical: 10,
-  //         borderRadius: 20
-  //       }}
-  //     >
-  //       <TextInput
-  //         autoCapitalize="none"
-  //         autoFocus={true}
-  //         autoCorrect={false}
-  //         clearButtonMode="always"
-  //         value={query}
-  //         onChangeText={queryText => handleSearch(queryText)}
-  //         placeholder="City Name"
-  //         style={{ backgroundColor: '#fff', paddingHorizontal: 20 }}
-  //       />
-  //     </View>
-  //   );
-  // }
 
   const handleSearch = text => {
     const formattedQuery = text.toLowerCase();
@@ -103,7 +78,6 @@ export default function App() {
         <Route exact path="/results" render={(props) =>
           <ResultScreen data={data} />
         }/>
-      {/* <FlatList ListHeaderComponent={renderHeader} /> */}
       </Switch>
     </View>
     </NativeRouter>
