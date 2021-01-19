@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TextInput, SafeAreaView, Text, StyleSheet, Image} from 'react-native';
+import { View, TextInput, SafeAreaView, Text, StyleSheet, Image, ScrollView } from 'react-native';
 import { Link } from 'react-router-native'
 
 function HomeScreen (props) {
@@ -7,7 +7,7 @@ function HomeScreen (props) {
         <SafeAreaView 
         style={styles.container}
     >
-       <View>
+       <ScrollView>
         <View style={styles.logoContainer}>
         <Image style={styles.logo} source={require('../assets/logo.png')} />
         <Text style={styles.tagline}>The Search for Local Breweries</Text>
@@ -29,7 +29,7 @@ function HomeScreen (props) {
       </Link>
       </View>
       </View>
-      </View> 
+      </ScrollView> 
     </SafeAreaView>
     )
 }
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
 
     },
     logoContainer: {
-        marginVertical: 175,
+        marginVertical: 200,
         justifyContent: 'center',
         alignItems: 'center'
     },
