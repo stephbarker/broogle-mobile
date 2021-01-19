@@ -7,7 +7,7 @@ function HomeScreen (props) {
         <SafeAreaView 
         style={styles.container}
     >
-        
+       <View>
         <View style={styles.logoContainer}>
         <Image style={styles.logo} source={require('../assets/logo.png')} />
         <Text style={styles.tagline}>The Search for Local Breweries</Text>
@@ -24,11 +24,12 @@ function HomeScreen (props) {
         style={styles.input}
       />
       <View style={styles.link}>
-      <Link to="/results" underlayColor="transparent">
+      <Link to="/results" underlayColor="grey">
           <Text style={styles.cheers}>Cheers!</Text>
       </Link>
       </View>
       </View>
+      </View> 
     </SafeAreaView>
     )
 }

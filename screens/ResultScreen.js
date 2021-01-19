@@ -11,7 +11,7 @@ function ResultScreen (props) {
         data={props.data}
         keyExtractor={item => item.first}
         renderItem={({ item }) => (
-            <TouchableOpacity activeOpacity={1} backgroundColor="FFF" onPress={() => Linking.openURL(item.website_url)}>
+            <TouchableOpacity activeOpacity={0.6} backgroundColor="8D8584" onPress={() => Linking.openURL(item.website_url)}>
           <View style={styles.listItem}>
             <View style={styles.listItemText}>
               <Text style={styles.listItemTitle}>{item.name}</Text>
@@ -22,7 +22,7 @@ function ResultScreen (props) {
         )}
       />
       <View style={styles.footer}>
-      <Link to="/" underlayColor="transparent">
+      <Link to="/" underlayColor="grey">
           <Text style={styles.back}>Back</Text> 
       </Link>
       
