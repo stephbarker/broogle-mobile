@@ -28,6 +28,7 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "description": ""
+    "description": "A mobile version of the web application Broogle. It allows a user to search for breweries by city using the GitHub Open Brewery DB.",
+    "githubUrl": "https://github.com/stephbarker/broogle-mobile"
   }
 }
